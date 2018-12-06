@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app>
+    <appId>1</appId>
+    <person name="zhangsan" age="20" sex="female">
+        <id>1</id>
+    </person>
+    <person name="lisi" age="21" sex="male">
+        <id>2</id>
+    </person>
+</app>
