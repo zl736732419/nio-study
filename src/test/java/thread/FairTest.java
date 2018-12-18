@@ -61,8 +61,8 @@ public class FairTest {
             // 将锁信息入队列
             synchronized (this) {
                 waitingQueues.add(queueObject);
+                System.out.println("current queue contains: [ " + waitingQueues + " ]");
             }
-            System.out.println("current queue contains: [ " + waitingQueues + " ]");
             
             boolean isLockedForThisThread = true;
             while(isLockedForThisThread) {
@@ -91,16 +91,17 @@ public class FairTest {
     public static void main(String[] args) throws Exception {
         FairLock fairLock = new FairLock();
         Thread thread;
-        for (int i = 0; i < 3; i++) {
+        int num = 5;
+        for (int i = 0; i < num; i++) {
             thread = new Thread(() -> fairLock.lock());
             thread.setName("thread-" + (i+1));
             thread.start();
         }
         
-        Thread.sleep(1000);
-        fairLock.unlock();
-        Thread.sleep(1000);
-        fairLock.unlock();
+        for (int i = 0; i < (num - 1); i++) {
+            Thread.sleep(1000);
+            fairLock.unlock();
+        }
     }
     
 }
